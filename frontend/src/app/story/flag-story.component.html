@@ -1,0 +1,65 @@
+<main class="page">
+  <section class="hero">
+    <svg class="hero__flag" viewBox="0 0 92 96" role="img" aria-label="Flag of Nepal">
+      <polygon class="hero__flag-border" points="3,3 65,25 30,42 82,64 3,88" />
+      <polygon class="hero__flag-field" points="7.7,8.8 61,27.7 30.9,42.3 75.6,61.3 7.7,81.9" />
+
+      <g class="hero__moon">
+        <circle cx="33" cy="24" r="7" class="hero__moon-full" />
+        <circle cx="36.5" cy="21.5" r="6" class="hero__moon-bite" />
+      </g>
+
+      <g class="hero__sun">
+        @for (angle of sunRayAngles; track angle) {
+          <line x1="52" y1="60" x2="52" y2="49" [attr.transform]="'rotate(' + angle + ' 52 60)'" />
+        }
+        <circle cx="52" cy="60" r="5.5" class="hero__sun-core" />
+      </g>
+    </svg>
+
+    <h1 class="hero__title">{{ story()?.title ?? 'The Story of the Nepal Flag' }}</h1>
+    <p class="hero__tagline">
+      {{ story()?.tagline ?? 'The only flag on Earth that isn\'t a rectangle.' }}
+    </p>
+  </section>
+
+  @if (loading()) {
+    <p class="status">Unfurling the story…</p>
+  }
+
+  @if (error()) {
+    <p class="status status--error">{{ error() }}</p>
+  }
+
+  @if (story(); as s) {
+    <section class="intro">
+      <p>{{ s.intro }}</p>
+    </section>
+
+    <section class="sections">
+      @for (section of s.sections; track section.id) {
+        <article class="card">
+          <span class="card__icon" aria-hidden="true">{{ section.icon }}</span>
+          <h2 class="card__heading">{{ section.heading }}</h2>
+          <p class="card__body">{{ section.body }}</p>
+        </article>
+      }
+    </section>
+
+    <section class="facts">
+      <h2 class="facts__title">Quick Facts</h2>
+      <dl class="facts__grid">
+        @for (fact of s.facts; track fact.label) {
+          <div class="facts__item">
+            <dt>{{ fact.label }}</dt>
+            <dd>{{ fact.value }}</dd>
+          </div>
+        }
+      </dl>
+    </section>
+  }
+
+  <footer class="footer">
+    <p>Angular · FastAPI · MongoDB</p>
+  </footer>
+</main>
