@@ -15,7 +15,6 @@ export class FlagStoryComponent implements OnInit {
   readonly story = signal<FlagStory | null>(null);
   readonly loading = signal(true);
   readonly error = signal<string | null>(null);
-  readonly sunRayAngles = Array.from({ length: 12 }, (_, i) => i * 30);
 
   ngOnInit(): void {
     this.flagStoryService.getStory().subscribe({

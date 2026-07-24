@@ -39,6 +39,7 @@
 
 .hero__flag {
   width: min(46vw, 220px);
+  height: auto;
   filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
   animation: wave 6s ease-in-out infinite;
   transform-origin: left center;
@@ -47,32 +48,6 @@
 @keyframes wave {
   0%, 100% { transform: rotate(0deg) scaleX(1); }
   50% { transform: rotate(1.2deg) scaleX(0.99); }
-}
-
-.hero__flag-border {
-  fill: var(--blue);
-}
-
-.hero__flag-field {
-  fill: var(--crimson);
-}
-
-.hero__moon-full {
-  fill: #fff;
-}
-
-.hero__moon-bite {
-  fill: var(--crimson);
-}
-
-.hero__sun line {
-  stroke: #fff;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-}
-
-.hero__sun-core {
-  fill: #fff;
 }
 
 .hero__title {
